@@ -270,7 +270,12 @@ class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
  
 def test(HandlerClass = SimpleHTTPRequestHandler,
          ServerClass = http.server.HTTPServer):
-    http.server.test(HandlerClass, ServerClass)
+    server_address = ('', 1234)
+    print ('serving in {}'.format(server_address))
+    httpd = ServerClass(server_address, HandlerClass)
+    httpd.serve_forever()
+
+
  
 if __name__ == '__main__':
     test()
